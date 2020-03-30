@@ -56,6 +56,30 @@ void insert(struct node* head, int val){
   current->forwards = new_node;
 }
 
+struct node* last(struct node* head){
+    struct node* current;
+    for (current=head; current->forwards!= NULL; current=current->forwards) {
+    }
+    return current;
+}
+
+struct node* second_last(struct node* head){
+  struct node* current;
+  for(current=head; current->forwards->forwards!=NULL;current=current->forwards){}
+  return current;
+}
+
+void delete(struct node* head){
+  struct node* current = head;
+  struct node* next = head;
+
+  while (next != NULL){
+    next = next->forwards;
+    free(current);
+    current = next;
+  }
+}
+
 int main(){
 
     struct node* head = new(1);
@@ -87,5 +111,9 @@ int main(){
     insert(head, 5);
     print_list(head);
     
+    delete(head);
+    delete(head2);
+    delete(reversed);
+
     return 0;
 }
